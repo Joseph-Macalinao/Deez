@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
 
 
 typedef struct Character{ // base class for a character, wanted to do abstract but forgot how ot
