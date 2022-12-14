@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
 
 
 typedef struct Character{
@@ -38,8 +39,8 @@ void create(){
         std::fstream s;
         char buff[100];
         char *warr;
-        warr = 'warrior';
-        std::string warr = 'warrior';
+        warr = "warrior";
+        std::string warr = "warrior";
 
 
 
@@ -48,7 +49,7 @@ void create(){
         "Mage: M" << std::endl <<
         "Paladin: P";
         s.getline( buffer, sizeof buffer );
-        if(strcmp(s, 'warrior') == 0){
+        if(strcmp(s, "warrior") == 0){
 
             //do stuff
         }
