@@ -61,4 +61,4 @@ int main () {
     cout << tim.name << "\n";
     cout << tim.health << "\n";
 
-};
+}
