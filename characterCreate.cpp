@@ -6,108 +6,99 @@
 
 typedef struct Character{ // base class for a character, wanted to do abstract but forgot how ot
     std::string name;
+    std::string type; // cna be any of the following
+    // warrior class, attack and health middle of road
+    // mage class, attack high, health low
+    // paladin class, attack low, health high
     int health;
     int attack;
 } Character;
 
-typedef struct Warrior{ // warrior class, attack and health middle of road
-    std::string name;
-    int health;
-    int attack;
-} Warrior;
 
-typedef struct Mage{ // mage class, attack high, health low
-    std::string name;
-    int health;
-    int attack;
-} Mage;
-
-typedef struct Paladin{ // paladin class, attack low, health high
-    std::string name;
-    int health;
-    int attack;
-} Paladin;
-
-Warrior *createWarrior(std::string newName, int newHealth, int newAttack){ // creation for Warrior character
-    Warrior *createWarrior = (Warrior*)malloc(sizeof(Warrior));
+Character *createWarrior(std::string newName){ // creation for Warrior character
+    Character *createWarrior = (Character*)malloc(sizeof(Character));
     createWarrior->name = newName;
-    createWarrior->health = newHealth;
-    createWarrior->attack = newAttack;
+    createWarrior->type = "warrior";
+    createWarrior->health = 15;
+    createWarrior->attack = 15;
     return createWarrior;
 }
 
-
-Mage *createMage(std::string newName, int newHealth, int newAttack){ // creation for Mage character
-    Mage *createMage = (Mage*)malloc(sizeof(Mage));
+Character *createMage(std::string newName){ // creation for Mage character
+    Character *createMage = (Character*)malloc(sizeof(Character));
     createMage->name = newName;
-    createMage->health = newHealth;
-    createMage->attack = newAttack;
+    createMage->type = "mage";
+    createMage->health = 10;
+    createMage->attack = 20;
     return createMage;
 }
 
-
-Paladin *createPaladin(std::string newName, int newHealth, int newAttack){ // creation of Paladin character
-    Paladin *createPaladin = (Paladin*)malloc(sizeof(Paladin));
+Character *createPaladin(std::string newName){ // creation of Paladin character
+    Character *createPaladin = (Character*)malloc(sizeof(Character));
     createPaladin->name = newName;
-    createPaladin->health = newHealth;
-    createPaladin->attack = newAttack;
+    createPaladin->type = "paladin";
+    createPaladin->health = 20;
+    createPaladin->attack = 10;
     return createPaladin;
 }
 
-void create(){
+Character* create(){
     int i = 1; // used for later while loop
     std::string name_create; // name grab from cin but with characters
     char buffer[100]; // buffer for name grab
     //struct Character *create = (Character*)malloc(sizeof(Character)); //honestly don't need it
-    std::cout<< "Please enter your name:";
+    std::cout<< "Please enter your name: ";
     std::getline(std::cin, name_create); // actually grabbing line
-    
+    Character *ret;
     while(i > 0){ // supposed to break when a valid class is chosen
                 // class options: Warrior, Mage, Paladin
 
         std::string s;
         
-        const char *warr = "warrior"; // need to do this for strcmp for some reason
-        const char *mag = "mage";        //  |
-        const char *pal = "paladin";     //  |
+        const char *warr = "w"; // need to do this for strcmp for some reason
+        const char *mag = "m";  //  |
+        const char *pal = "p";  //  |
 
         std::cout << "Would you like to be:" << std::endl << //asking for player choice of class
-        "Warror: W" << std::endl <<
-        "Mage: M" << std::endl <<
-        "Paladin: P" << std::endl;
-        std::getline(std::cin, s);
-        const char* choice = s.c_str(); // turning choice into a const char * for strcmp
-        //also want to make it so the input is lowercased. probably have to do that before making
-        // it a const char *
+        "Warror: w" << std::endl <<
+        "Mage: m" << std::endl <<
+        "Paladin: p" << std::endl;
+        std::getline(std::cin, s); // getting user input
+        int s_len = strlen(s.c_str()); // get length of input for loop to make lowercase
+        std::string s_str = s.c_str(); // get string of input for loop to make lowercase
+        for (int j = 0; j < s_len; j++) {
+            s_str[j] = tolower(s_str[j]); // make input lowercase
+        }
+        const char* choice = s_str.c_str(); // turning choice into a const char * for strcmp
 
         if(strcmp(choice, warr) == 0){
-            Warrior *retWarr = createWarrior(name_create, 15, 15);
-            std::cout<< retWarr->attack<<std::endl;
+            std::cout << std::endl << "Warrior selected!" << std::endl;
+            ret = createWarrior(name_create);
             break;
-            // don't know how to return, may need an abstract class
         }
 
         if(strcmp(choice, mag) == 0){
-            Mage *retMag = createMage(name_create, 20, 10);
-            std::cout<< retMag->attack<<std::endl;
+            std::cout << std::endl << "Mage selected!" << std::endl;
+            ret = createMage(name_create);
             break;
-            // don't know how to return, may need an abstract class
         }
 
         if(strcmp(choice, pal) == 0){
-            Paladin *retPal = createPaladin(name_create, 10, 20);
-            std::cout << retPal->attack<<std::endl;
+            std::cout << std::endl << "Paladin selected!" << std::endl;
+            ret = createPaladin(name_create);
             break;
-            // don't know how to return, may need an abstract class
         }
     };
-
+    return ret;
 }
 
 
-
-
 int main(){
-    create();
+    Character* character = create();
+    std::cout << "\n";
+    std::cout << "Name: " << character->name << std::endl;
+    std::cout << "Type: " << character->type << std::endl;
+    std::cout << "Health: " << character->health << std::endl;
+    std::cout << "Attack: " << character->attack << std::endl;
     return 0;
 }
