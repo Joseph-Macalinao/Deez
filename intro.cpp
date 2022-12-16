@@ -19,16 +19,14 @@ void begin(){
     if(strcmp(choiceFin, hello) != 0){
         std::cout<<"You know it's usually respectful to start a conversation with he..." << endl;
         //_sleep(5000);
-        std::cout << "Ok nevermind, welcome to DEEZ, a mid game made by two 
-        cornball ahh college students." << endl << "You will probably not
-        be challenged since this game was just meant to get ready for next term."
-        endl << "Ok LETSA GO (TM)";
+        std::cout << "Ok nevermind, welcome to DEEZ, a mid game made by two cornball ahh college students." << endl <<
+        "You will probably not be challenged since this game was just meant to get ready for next term."
+        << endl << "Ok LETSA GO (TM)";
     }
     else{
-        cout << "Welcome to DEEZ, a mid game made by two 
-        cornball ahh college students." << endl << "You will probably not
-        be challenged since this game was just meant to get ready for next term."
-        endl << "Ok LETSA GO (TM)";
+        cout << "Welcome to DEEZ, a mid game made by two cornball ahh college students."
+        << endl << "You will probably not be challenged since this game was just meant to get ready for next term."
+        << endl << "Ok LETSA GO (TM)";
         
     }
 
